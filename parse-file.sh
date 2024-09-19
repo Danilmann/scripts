@@ -10,12 +10,11 @@ if [ ! -f "$FILE_PATH" ]; then
   exit 1
 fi
 
-# Чтение данных из файла и экспортирование переменных в GITHUB_ENV
+# Чтение данных из файла и вывод значений в формате ::set-env
 while IFS= read -r line; do
   if [[ ! $line =~ ^# && $line =~ .*=.* ]]; then
     IFS='=' read -r key value <<< "$line"
-    echo "$key='$value'" >> $GITHUB_ENV
-    export "$key"="$value"  # Экспортируем переменные в текущую сессию
+    echo "::set-env name=$key::$value"
   fi
 done < "$FILE_PATH"
 
