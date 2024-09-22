@@ -36,3 +36,5 @@ export $(cat $GITHUB_ENV | xargs)
 echo "Проверка экспорта переменных:"
 echo "Репозиторий: ${repository_name}"
 echo "Среда: ${environment}"
+echo "Приложение: ${application}"
+echo "Тег: ${tag}"
